@@ -1,29 +1,46 @@
 package com.manhattan.teams;
 
-import com.manhattan.players.Coach;
+import java.util.Collections;
+import java.util.Vector;
+
 import com.manhattan.players.PlayerList;
+import com.manhattan.utils.Coach;
 
 public class Team {
 	private String teamName;
 	private PlayerList teamPlayerList;
 	private Coach coach;
+	private static Vector<Team> allTeams;
+	private static int numTeams = Team.allTeams.size();
 	
 	public Team(){
-		
+		Team.allTeams.addElement(this);
 	}
 	public Team(String name, PlayerList players){
 		this.setTeamName(name);
 		this.setTeamPlayerList(players);
+		Team.allTeams.addElement(this);
+
 	}
 	
 	public Team(String name, PlayerList players, Coach coach){
 		this.setTeamName(name);
 		this.setTeamPlayerList(players);
 		this.setCoach(coach);
+		Team.allTeams.addElement(this);
+
+	}
+	
+	public static Vector<Team> all(){
+		return Team.allTeams;
+	}
+	public static int NumberOfTeams(){
+		return Team.numTeams;
 	}
 	
 	public void shuffle(){
 		//shuffle playerList
+		Collections.shuffle(this.getTeamPlayerList().getPlayers());
 	}
 	
 	/**

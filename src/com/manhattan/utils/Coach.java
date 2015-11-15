@@ -1,7 +1,6 @@
-package com.manhattan.players;
+package com.manhattan.utils;
 
 import com.manhattan.teams.Team;
-import com.manhattan.utils.Gender;
 
 public class Coach extends Human {
 	private Team team;

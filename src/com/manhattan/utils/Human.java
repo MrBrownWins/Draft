@@ -1,6 +1,4 @@
-package com.manhattan.players;
-
-import com.manhattan.utils.Gender;
+package com.manhattan.utils;
 
 public abstract class Human {
 	private int age;

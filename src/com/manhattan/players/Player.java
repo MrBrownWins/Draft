@@ -1,6 +1,7 @@
 package com.manhattan.players;
 
 import com.manhattan.utils.Gender;
+import com.manhattan.utils.Human;
 
 public class Player extends Human {
 	private static int numberOfPlayers = 0;
