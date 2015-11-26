@@ -1,6 +1,4 @@
-package com.manhattan.utils;
-
-import com.manhattan.teams.Team;
+package uz.draft.models;
 
 public class Match {
 	Team hostTeam;

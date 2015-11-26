@@ -5,4 +5,4 @@
  * @author karimov
  *
  */
-package com.manhattan.players;
+package uz.draft.db;
