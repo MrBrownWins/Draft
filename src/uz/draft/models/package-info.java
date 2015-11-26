@@ -5,4 +5,4 @@
  * @author karimov
  *
  */
-package com.manhattan.championships;
+package uz.draft.models;

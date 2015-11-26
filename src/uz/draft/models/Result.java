@@ -1,4 +1,4 @@
-package com.manhattan.utils;
+package uz.draft.models;
 
 public class Result {
 	String lScore;

@@ -5,4 +5,4 @@
  * @author karimov
  *
  */
-package com.manhattan.starter;
+package uz.draft.starter;

@@ -1,28 +1,36 @@
-package com.manhattan.utils;
+package uz.draft.models;
 
 public abstract class Human {
+	private int id;
 	private int age;
 	private String name;
 	private Gender gender;
 
 	public Human() {
-		// TODO Auto-generated constructor stub
 	
 	}
 	public Human(String name,int age, Gender gender){
 		this.setAll(name, age, gender);
+	}
+	public Human(int id, String name,int age, Gender gender){
+		this.setAll(id,name, age, gender);
+	}
+	
+	public void setAll(int id, String name,int age,Gender gender){
+		this.setId(id);
+		this.setName(name);
+		this.setAge(age);
+		this.setGender(gender);
 	}
 	public void setAll(String name,int age,Gender gender){
 		this.setName(name);
 		this.setAge(age);
 		this.setGender(gender);
 	}
-	/* (non-Javadoc)
-	 * @see java.lang.Object#toString()
-	 */
+	
 	@Override
 	public String toString() {
-		return " name: " + this.name + " ,age: " + this.age +" ,gender:" + this.gender;
+		return "Id:"+ id + " name: " + this.name + " ,age: " + this.age +" ,gender:" + this.gender;
 	}
 	
 	public boolean equals(Human other){
@@ -31,6 +39,12 @@ public abstract class Human {
 				return true;
 		}
 		return false;
+	}
+	public int getId() {
+		return id;
+	}
+	public void setId(int id) {
+		this.id = id;
 	}
 	/**
 	 * @return the age
