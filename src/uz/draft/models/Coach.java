@@ -1,5 +1,8 @@
 package uz.draft.models;
 
+import uz.draft.utils.Gender;
+import uz.draft.utils.Human;
+
 public class Coach extends Human {
 	private Team team;
 

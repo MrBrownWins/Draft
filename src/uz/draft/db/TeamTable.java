@@ -5,9 +5,9 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 
 import uz.draft.models.Coach;
-import uz.draft.models.Gender;
 import uz.draft.models.Team;
 import uz.draft.models.TeamList;
+import uz.draft.utils.Gender;
 
 public class TeamTable extends Table{
 	

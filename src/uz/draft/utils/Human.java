@@ -1,4 +1,4 @@
-package uz.draft.models;
+package uz.draft.utils;
 
 public abstract class Human {
 	private int id;

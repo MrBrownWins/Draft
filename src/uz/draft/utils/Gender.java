@@ -1,4 +1,4 @@
-package uz.draft.models;
+package uz.draft.utils;
 
 public class Gender {
 	public static final Gender MALE = new Gender("male");

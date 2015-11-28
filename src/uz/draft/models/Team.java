@@ -41,15 +41,6 @@ public class Team {
 		return championship;
 	}
 
-	public void setChampionship(Championship championship) {
-		if(this.championship != null){
-			this.championship.removeTeam(this);
-		}
-		
-		this.championship = championship;
-		this.getChampionship().addTeam(this);
-	}
-
 	public PlayerList getPlayers() {
 		return players;
 	}

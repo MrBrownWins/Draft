@@ -1,108 +1,108 @@
 package uz.draft.models;
 
-import java.util.Random;
+import javafx.beans.property.IntegerProperty;
+import javafx.beans.property.SimpleIntegerProperty;
+import javafx.beans.property.SimpleStringProperty;
+import javafx.beans.property.StringProperty;
 
 public class Championship {
-	private int id;
-	private String Name;
 	
-	private TeamList teams;
-	private MatchList matches;
-	private Result results;
-	
-	String prize;
-	Player bestPlayer;
+	private IntegerProperty id;
+	private StringProperty name;
+	private StringProperty prize;
+	private StringProperty bestPlayer;
 
 	public Championship(){
-		
+		this(null, null, null);
 	}
-	
-	public void addTeam(Team team){
-		this.getTeams().add(team);
-	}
-	public void removeTeam(Team team){
-		this.getTeams().remove(team);
-	}
-	
-	public MatchList draft(){
-		//should return array of matches of all teams
-		
-		Random random = new Random();
-		int r = 0;
-		
-		Match m = new Match();
-		TeamList l = this.getTeams();
-		
-		while(!l.isEmpty()){
-			r = random.nextInt(l.size());
-			m.guestTeam = l.remove(r);
-			
-			if( l.isEmpty()){
-				m.hostTeam = new Team();
-			}else{
-				r = random.nextInt(l.size());
-				m.hostTeam = l.remove(r);
-			}
-			
-			this.getMatches().add(m);
-		}
-		
-		return this.getMatches();
-	}
+	public Championship(String name){
+        this.name = new SimpleStringProperty(name);
+    }
+	public Championship(String name, String prize,String bestPlayer){
+        this.name = new SimpleStringProperty(name);
+        this.prize = new SimpleStringProperty(prize);
+        this.bestPlayer = new SimpleStringProperty(bestPlayer);
 
-	public int getId() {
+  	}
+	public Championship(int id, String name){
+		this.id = new SimpleIntegerProperty(id);
+        this.name = new SimpleStringProperty(name);
+	}
+	public Championship(int id, String name, String prize,String bestPlayer){
+		this.id = new SimpleIntegerProperty(id);
+        this.name = new SimpleStringProperty(name);
+        this.prize = new SimpleStringProperty(prize);
+        this.bestPlayer = new SimpleStringProperty(bestPlayer);
+
+  	}
+	
+	//Properties
+	public IntegerProperty idProperty(){
 		return id;
 	}
-
-	public void setId(int id) {
-		this.id = id;
+	public StringProperty nameProperty(){
+		return name;
 	}
-
-	public String getName() {
-		return Name;
-	}
-
-	public void setName(String name) {
-		Name = name;
-	}
-
-	public TeamList getTeams() {
-		return teams;
-	}
-
-	public void setTeams(TeamList teams) {
-		this.teams = teams;
-	}
-
-	public MatchList getMatches() {
-		return matches;
-	}
-
-	public void setMatches(MatchList matches) {
-		this.matches = matches;
-	}
-
-	public Result getResults() {
-		return results;
-	}
-
-	public void setResults(Result results) {
-		this.results = results;
-	}
-
-	public String getPrize() {
+	public StringProperty prizeProperty(){
 		return prize;
 	}
-
-	public void setPrize(String prize) {
-		this.prize = prize;
-	}
-
-	public Player getBestPlayer() {
+	public StringProperty bestPlayerProperty(){
 		return bestPlayer;
 	}
+	
+	//Getters and Setters
+	public int getId() {
+		return id.get();
+	}
+	public void setId(int id) {
+		this.id.set(id);
+	}
+	public String getName() {
+		return name.get();
+	}
+	public void setName(String name) {
+		this.name.set(name);
+	}
+	
+	public String getPrize() {
+		return prize.get();
+	}
+	public void setPrize(String prize) {
+		this.prize.set(prize);;
+	}
 
-	public void setBestPlayer(Player bestPlayer) {
-		this.bestPlayer = bestPlayer;
+	public String getBestPlayer() {
+		return bestPlayer.get();
+	}
+
+	public void setBestPlayer(String bestPlayer) {
+		this.bestPlayer.set(bestPlayer);
 	}	
 }
+
+
+//public MatchList draft(){
+//	//should return array of matches of all teams
+//	
+//	Random random = new Random();
+//	int r = 0;
+//	
+//	Match m = new Match();
+//	TeamList l = this.getTeams();
+//	
+//	while(!l.isEmpty()){
+//		r = random.nextInt(l.size());
+//		m.guestTeam = l.remove(r);
+//		
+//		if( l.isEmpty()){
+//			m.hostTeam = new Team();
+//		}else{
+//			r = random.nextInt(l.size());
+//			m.hostTeam = l.remove(r);
+//		}
+//		
+//		this.getMatches().add(m);
+//	}
+//	
+//	return this.getMatches();
+//}
