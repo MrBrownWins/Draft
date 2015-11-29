@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.embed.swing.*?>
 <?import javafx.scene.*?>
 <?import javafx.scene.effect.*?>
 <?import java.lang.*?>
@@ -77,8 +78,7 @@
                   </Label>
                   <TableView fx:id="championshipTable" prefHeight="517.0" prefWidth="221.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                     <columns>
-                      <TableColumn fx:id="championshipName" maxWidth="170.0" minWidth="-1.0" prefWidth="150.0" text="Championships" />
-                      <TableColumn fx:id="championshipPrize" maxWidth="1.7976931348623157E308" minWidth="-1.0" prefWidth="72.0" text="Prize" />
+                      <TableColumn fx:id="championshipName" maxWidth="220.0" minWidth="-1.0" prefWidth="220.0" text="Championships" />
                     </columns>
                   </TableView>
                </children>
@@ -88,6 +88,13 @@
                   <AnchorPane maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-1.0" minWidth="-1.0" prefHeight="545.0" prefWidth="430.0">
                      <children>
                         <Label alignment="CENTER" font="$x1" layoutX="14.0" layoutY="14.0" style="&#10;" text="Diagram" textAlignment="CENTER" textFill="$x2" wrapText="false" />
+                        <TableView fx:id="draftTable" editable="true" prefHeight="479.0" prefWidth="462.0">
+                          <columns>
+                            <TableColumn fx:id="team1Column" prefWidth="146.0" text="Team 1" />
+                            <TableColumn fx:id="team2Column" prefWidth="154.0" text="Team 2" />
+                              <TableColumn fx:id="resultColumn" prefWidth="161.0" text="Result" />
+                          </columns>
+                        </TableView>
                      </children>
                   </AnchorPane>
                </content>
@@ -114,15 +121,27 @@
                         <RowConstraints maxHeight="301.0" minHeight="10.0" prefHeight="280.0" vgrow="SOMETIMES" />
                     </rowConstraints>
                      <children>
-                        <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="29.0" prefWidth="56.0" text="Name" textAlignment="CENTER" GridPane.rowIndex="1" />
-                        <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="29.0" prefWidth="56.0" text="Prize" textAlignment="CENTER" GridPane.rowIndex="2" />
+                        <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="29.0" prefWidth="56.0" text="Name" textAlignment="CENTER" GridPane.rowIndex="1">
+                           <font>
+                              <Font size="16.0" />
+                           </font></Label>
+                        <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="29.0" prefWidth="56.0" text="Prize" textAlignment="CENTER" GridPane.rowIndex="2">
+                           <font>
+                              <Font size="16.0" />
+                           </font></Label>
                         <Label fx:id="championshipNameLabel" alignment="CENTER" contentDisplay="CENTER" prefHeight="29.0" prefWidth="148.0" textAlignment="CENTER" GridPane.columnIndex="1" GridPane.rowIndex="1" />
                         <Label fx:id="prizeLabel" alignment="CENTER" contentDisplay="CENTER" prefHeight="29.0" prefWidth="148.0" textAlignment="CENTER" GridPane.columnIndex="1" GridPane.rowIndex="2" />
-                        <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="29.0" prefWidth="56.0" text="Number" textAlignment="CENTER" GridPane.rowIndex="3" />
+                        <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="29.0" prefWidth="56.0" text="Number" textAlignment="CENTER" GridPane.rowIndex="3">
+                           <font>
+                              <Font size="14.0" />
+                           </font></Label>
                         <Label fx:id="numberLabel" alignment="CENTER" contentDisplay="CENTER" prefHeight="29.0" prefWidth="148.0" textAlignment="CENTER" GridPane.columnIndex="1" GridPane.rowIndex="3" />
                         <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="29.0" prefWidth="148.0" text="Teams" textAlignment="CENTER" GridPane.columnIndex="1" GridPane.rowIndex="5" />
-                        <Label alignment="CENTER" contentDisplay="CENTER" lineSpacing="1.0" prefHeight="53.0" prefWidth="95.0" text="Best Player" textAlignment="CENTER" wrapText="true" GridPane.rowIndex="4" />
-                        <Label fx:id="bestPlayerLabel" alignment="CENTER" contentDisplay="CENTER" prefHeight="46.0" prefWidth="146.0" textAlignment="CENTER" GridPane.columnIndex="1" GridPane.rowIndex="4" />
+                        <Label alignment="CENTER" contentDisplay="CENTER" lineSpacing="1.0" prefHeight="53.0" prefWidth="95.0" text="Referee" textAlignment="CENTER" wrapText="true" GridPane.rowIndex="4">
+                           <font>
+                              <Font size="14.0" />
+                           </font></Label>
+                        <Label fx:id="refereeLabel" alignment="CENTER" contentDisplay="CENTER" prefHeight="46.0" prefWidth="146.0" textAlignment="CENTER" GridPane.columnIndex="1" GridPane.rowIndex="4" />
                      </children>
                      <cursor>
                         <Cursor fx:constant="HAND" />

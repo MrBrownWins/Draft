@@ -11,7 +11,7 @@ public class ChampionshipDialogController extends MainController{
 
     @FXML private TextField championshipNameField;
     @FXML private TextField prizeField;
-    @FXML private TextField bestPlayerField;
+    @FXML private TextField refereeField;
 
     @FXML private Label statusMessageLabel;
     @FXML private Button okButton;
@@ -32,7 +32,7 @@ public class ChampionshipDialogController extends MainController{
         this.championship = ch;
         championshipNameField.setText(ch.getName());
         prizeField.setText(ch.getPrize());
-        bestPlayerField.setText(ch.getBestPlayer());
+        refereeField.setText(ch.getReferee());
 
     }
     
@@ -44,7 +44,7 @@ public class ChampionshipDialogController extends MainController{
         if (checkInputData()) {
         	championship.setName(championshipNameField.getText());
         	championship.setPrize(prizeField.getText());
-        	championship.setBestPlayer(bestPlayerField.getText());
+        	championship.setReferee(refereeField.getText());
             
         	okClicked = true;
             dialogStage.close();

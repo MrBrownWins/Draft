@@ -11,6 +11,7 @@ import javafx.scene.control.TableView;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.VBox;
 import uz.draft.models.Championship;
+import uz.draft.models.Team;
 
 public class MainController extends VBox{
 	
@@ -24,13 +25,16 @@ public class MainController extends VBox{
 	
 	@FXML private TableView<Championship> championshipTable;
 	@FXML private TableColumn<Championship, String> championshipName;
-	@FXML private TableColumn<Championship, String> championshipPrize;
+	
+	@FXML private TableView<Team> draftTable;
+	@FXML private TableColumn<Team, String> team1Column;
+	@FXML private TableColumn<Team, String> team2Column;
 	
 	@FXML private GridPane detailsTable;
 	@FXML private Label championshipNameLabel;
 	@FXML private Label prizeLabel;
 	@FXML private Label numberLabel;
-	@FXML private Label bestPlayerLabel;
+	@FXML private Label refereeLabel;
 	  
 	@FXML public void handleMakeDraftButton(ActionEvent event){
 		
@@ -41,9 +45,7 @@ public class MainController extends VBox{
 	        boolean okClicked = draftMainApp.showChampionshipEditDialog(newChampionship);
 	        if (okClicked) {
 	            draftMainApp.getChampionshipData().add(newChampionship);
-	            //save to db
-	            draftMainApp.table.addChampionship(newChampionship);
-	        }
+	            }
 	}
 	    
 	@FXML public void handleEditChampionshipButton() {
@@ -51,8 +53,6 @@ public class MainController extends VBox{
 	        if (selectedChampionship != null) {
 	            boolean okClicked = draftMainApp.showChampionshipEditDialog(selectedChampionship);
 	            if (okClicked) {
-	            	//update db
-	            	draftMainApp.table.updateChampionship(selectedChampionship);
 	            	showChampionshipDetails(selectedChampionship);
 	            	
 	            }
@@ -73,7 +73,6 @@ public class MainController extends VBox{
 		int selectedIndex = championshipTable.getSelectionModel().getSelectedIndex();
 		if (selectedIndex >= 0) {
 			Championship ch = championshipTable.getItems().get(selectedIndex);
-			draftMainApp.table.deleteChampionship(ch);
 			championshipTable.getItems().remove(ch);
 			
 		} else {
@@ -95,7 +94,6 @@ public class MainController extends VBox{
 	@FXML private void initialize(){
 
 		  championshipName.setCellValueFactory(cellData -> cellData.getValue().nameProperty());
-		  championshipPrize.setCellValueFactory(cellData -> cellData.getValue().prizeProperty());
 		  
 		  showChampionshipDetails(null);
 		  
@@ -111,12 +109,16 @@ public class MainController extends VBox{
 			this.championshipNameLabel.setText(ch.getName());
 			this.prizeLabel.setText(ch.getPrize());
 			this.numberLabel.setText("4");
-			this.bestPlayerLabel.setText(ch.getBestPlayer());
+			this.refereeLabel.setText(ch.getReferee());
+			
+			this.draftTable.setItems(ch.getTeams());
+			this.team1Column.setCellValueFactory(cellData -> cellData.getValue().teamNameProperty());
+			
 		}else{
 			this.championshipNameLabel.setText("");
 			this.prizeLabel.setText("");
 			this.numberLabel.setText("");
-			this.bestPlayerLabel.setText("");
+			this.refereeLabel.setText("");
 			this.detailsTable.setVisible(false);
 		}
 	}

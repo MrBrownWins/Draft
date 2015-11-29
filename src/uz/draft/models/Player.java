@@ -26,13 +26,5 @@ public class Player extends Human {
 	public Team getTeam() {
 		return team;
 	}
-	public void setTeam(Team team) {
-		if(this.team != null){
-			this.team.removePlayer(this);
-		}
-		this.team = team;
-		this.getTeam().addPlayer(this);
-	}
-	
 
 }

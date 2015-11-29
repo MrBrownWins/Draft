@@ -11,11 +11,14 @@ import uz.draft.models.Championship;
 public class ChampionshipTable extends Table {
 	
 	private PreparedStatement selectAllChampionship = null;
+	private PreparedStatement selectChampionshipByName = null;
 	private PreparedStatement insertNewChampionship = null;
 	private PreparedStatement deleteChampionship = null;
 	private PreparedStatement updateChampionship = null;
 	
 	private final static String TABLE_NAME = new String("championships");
+	private TeamTable table = new TeamTable();
+
 	public ChampionshipTable(){
 		super();
 		connectDb();
@@ -29,8 +32,9 @@ public class ChampionshipTable extends Table {
 		try {
 			
 			selectAllChampionship = this.getDbConnection().prepareStatement("SELECT * FROM " + TABLE_NAME);
-			insertNewChampionship = this.getDbConnection().prepareStatement("INSERT INTO "+ TABLE_NAME + "(name, prize,bestplayer)" + "VALUES(?, ?,?)");
-			updateChampionship = this.getDbConnection().prepareStatement("UPDATE "+ TABLE_NAME + " SET name = ?, prize = ?, bestplayer = ? WHERE name = ?");
+			selectChampionshipByName = this.getDbConnection().prepareStatement("SELECT * FROM " + TABLE_NAME + "WHERE name= ?");
+			insertNewChampionship = this.getDbConnection().prepareStatement("INSERT INTO "+ TABLE_NAME + "(name, prize,referee)" + "VALUES(?, ?,?)");
+			updateChampionship = this.getDbConnection().prepareStatement("UPDATE "+ TABLE_NAME + " SET name = ?, prize = ?, referee = ? WHERE name = ?");
 			deleteChampionship = this.getDbConnection().prepareStatement("DELETE FROM " + TABLE_NAME + "WHERE name = ?");
 			super.setConnected(true);
 			
@@ -61,12 +65,14 @@ public class ChampionshipTable extends Table {
 			championships = FXCollections.observableArrayList();
 
 			while (resultSet.next()) {
-				championships.add(new Championship(
+				Championship ch = new Championship(
 						resultSet.getInt("id"), 
 						resultSet.getString("name"),
 						resultSet.getString("prize"),
-						resultSet.getString("bestplayer")
-						));
+						resultSet.getString("referee")
+						);
+				ch.setTeams(this.table.selecTeamsByChampionship(ch));
+				championships.add(ch);
 				}
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -80,14 +86,33 @@ public class ChampionshipTable extends Table {
 		}
 		return championships;
 	}
-	
+	public Championship getChampionshipByName(String name){
+		Championship ch = new Championship();
+		ResultSet result = null;
+		try {
+			this.selectChampionshipByName.setString(1, name);
+			result = this.selectChampionshipByName.executeQuery();
+			ch.setId(result.getInt("id"));
+			ch.setName(result.getString("name"));
+			ch.setPrize(result.getString("prize"));
+			ch.setReferee(result.getString("referee"));
+			ch.setTeams(this.table.selecTeamsByChampionship(ch));
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		
+		return ch;
+	}
 	public void addChampionship(Championship ch) {
 		try {
 			this.insertNewChampionship.setString(1, ch.getName());
 			this.insertNewChampionship.setString(2, ch.getPrize());
-			this.insertNewChampionship.setString(3, ch.getBestPlayer());
+			this.insertNewChampionship.setString(3, ch.getReferee());
 			this.insertNewChampionship.executeUpdate();
-			
+			int i = ch.getTeams().size();
+			for(int j = 0; j < i; j++){
+				this.table.addTeam(ch.getTeams().get(j));
+			}
 		} catch (SQLException e) {
 			e.printStackTrace();
 			this.updateChampionship(ch);
@@ -97,7 +122,7 @@ public class ChampionshipTable extends Table {
 		try {
 			this.updateChampionship.setString(1, ch.getName());
 			this.updateChampionship.setString(2, ch.getPrize());
-			this.updateChampionship.setString(3, ch.getBestPlayer());
+			this.updateChampionship.setString(3, ch.getReferee());
 			this.updateChampionship.setString(4, ch.getName());
 			
 			updateChampionship.executeUpdate();

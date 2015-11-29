@@ -1,38 +1,43 @@
 package uz.draft.models;
 
+import java.util.ArrayList;
+
 import javafx.beans.property.IntegerProperty;
 import javafx.beans.property.SimpleIntegerProperty;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
+import javafx.collections.ObservableList;
 
 public class Championship {
 	
 	private IntegerProperty id;
 	private StringProperty name;
 	private StringProperty prize;
-	private StringProperty bestPlayer;
-
+	private StringProperty referee;
+	
+	private ArrayList<Team> teams;
+	
 	public Championship(){
 		this(null, null, null);
 	}
 	public Championship(String name){
         this.name = new SimpleStringProperty(name);
     }
-	public Championship(String name, String prize,String bestPlayer){
+	public Championship(String name, String prize,String referee){
         this.name = new SimpleStringProperty(name);
         this.prize = new SimpleStringProperty(prize);
-        this.bestPlayer = new SimpleStringProperty(bestPlayer);
+        this.referee = new SimpleStringProperty(referee);
 
   	}
 	public Championship(int id, String name){
 		this.id = new SimpleIntegerProperty(id);
         this.name = new SimpleStringProperty(name);
 	}
-	public Championship(int id, String name, String prize,String bestPlayer){
+	public Championship(int id, String name, String prize,String referee){
 		this.id = new SimpleIntegerProperty(id);
         this.name = new SimpleStringProperty(name);
         this.prize = new SimpleStringProperty(prize);
-        this.bestPlayer = new SimpleStringProperty(bestPlayer);
+        this.referee = new SimpleStringProperty(referee);
 
   	}
 	
@@ -46,8 +51,8 @@ public class Championship {
 	public StringProperty prizeProperty(){
 		return prize;
 	}
-	public StringProperty bestPlayerProperty(){
-		return bestPlayer;
+	public StringProperty refereeProperty(){
+		return referee;
 	}
 	
 	//Getters and Setters
@@ -71,13 +76,20 @@ public class Championship {
 		this.prize.set(prize);;
 	}
 
-	public String getBestPlayer() {
-		return bestPlayer.get();
+	public String getReferee() {
+		return referee.get();
 	}
 
-	public void setBestPlayer(String bestPlayer) {
-		this.bestPlayer.set(bestPlayer);
+	public void setReferee(String referee) {
+		this.referee.set(referee);
 	}	
+	public ArrayList<Team> getTeams(){
+		return teams;
+	}
+	public void setTeams(ArrayList<Team> teams){
+		this.teams = teams;
+	}
+	
 }
 
 
