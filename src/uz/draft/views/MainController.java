@@ -30,7 +30,7 @@ public class MainController extends VBox{
 	@FXML private Label championshipNameLabel;
 	@FXML private Label prizeLabel;
 	@FXML private Label numberLabel;
-	@FXML private Label bestPlayerLabel;
+	@FXML private Label refereeLabel;
 	  
 	@FXML public void handleMakeDraftButton(ActionEvent event){
 		
@@ -95,7 +95,6 @@ public class MainController extends VBox{
 	@FXML private void initialize(){
 
 		  championshipName.setCellValueFactory(cellData -> cellData.getValue().nameProperty());
-		  championshipPrize.setCellValueFactory(cellData -> cellData.getValue().prizeProperty());
 		  
 		  showChampionshipDetails(null);
 		  
@@ -111,12 +110,12 @@ public class MainController extends VBox{
 			this.championshipNameLabel.setText(ch.getName());
 			this.prizeLabel.setText(ch.getPrize());
 			this.numberLabel.setText("4");
-			this.bestPlayerLabel.setText(ch.getBestPlayer());
+			this.refereeLabel.setText(ch.getReferee());
 		}else{
 			this.championshipNameLabel.setText("");
 			this.prizeLabel.setText("");
 			this.numberLabel.setText("");
-			this.bestPlayerLabel.setText("");
+			this.refereeLabel.setText("");
 			this.detailsTable.setVisible(false);
 		}
 	}

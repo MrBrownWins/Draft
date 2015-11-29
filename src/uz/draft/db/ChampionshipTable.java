@@ -29,9 +29,9 @@ public class ChampionshipTable extends Table {
 		try {
 			
 			selectAllChampionship = this.getDbConnection().prepareStatement("SELECT * FROM " + TABLE_NAME);
-			insertNewChampionship = this.getDbConnection().prepareStatement("INSERT INTO "+ TABLE_NAME + "(name, prize,bestplayer)" + "VALUES(?, ?,?)");
-			updateChampionship = this.getDbConnection().prepareStatement("UPDATE "+ TABLE_NAME + " SET name = ?, prize = ?, bestplayer = ? WHERE name = ?");
-			deleteChampionship = this.getDbConnection().prepareStatement("DELETE FROM " + TABLE_NAME + "WHERE name = ?");
+			insertNewChampionship = this.getDbConnection().prepareStatement("INSERT INTO "+ TABLE_NAME + "(name, prize,referee)" + "VALUES(?, ?,?)");
+			updateChampionship = this.getDbConnection().prepareStatement("UPDATE "+ TABLE_NAME + " SET name = ?, prize = ?, referee = ? WHERE name = ?");
+			deleteChampionship = this.getDbConnection().prepareStatement("DELETE FROM " + TABLE_NAME + " WHERE name = ?");
 			super.setConnected(true);
 			
 		} catch (Exception e) {
@@ -65,7 +65,7 @@ public class ChampionshipTable extends Table {
 						resultSet.getInt("id"), 
 						resultSet.getString("name"),
 						resultSet.getString("prize"),
-						resultSet.getString("bestplayer")
+						resultSet.getString("referee")
 						));
 				}
 		} catch (SQLException e) {
@@ -85,7 +85,7 @@ public class ChampionshipTable extends Table {
 		try {
 			this.insertNewChampionship.setString(1, ch.getName());
 			this.insertNewChampionship.setString(2, ch.getPrize());
-			this.insertNewChampionship.setString(3, ch.getBestPlayer());
+			this.insertNewChampionship.setString(3, ch.getReferee());
 			this.insertNewChampionship.executeUpdate();
 			
 		} catch (SQLException e) {
@@ -97,7 +97,7 @@ public class ChampionshipTable extends Table {
 		try {
 			this.updateChampionship.setString(1, ch.getName());
 			this.updateChampionship.setString(2, ch.getPrize());
-			this.updateChampionship.setString(3, ch.getBestPlayer());
+			this.updateChampionship.setString(3, ch.getReferee());
 			this.updateChampionship.setString(4, ch.getName());
 			
 			updateChampionship.executeUpdate();

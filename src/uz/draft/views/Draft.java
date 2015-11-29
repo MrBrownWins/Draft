@@ -31,7 +31,7 @@ public class Draft extends Application {
     
     public Draft(){
     	this.championshipData = table.allChampionships();
-    	
+   
     }  	
 	@Override 
 	public void start(Stage primaryStage) throws Exception {

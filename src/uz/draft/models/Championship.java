@@ -10,7 +10,7 @@ public class Championship {
 	private IntegerProperty id;
 	private StringProperty name;
 	private StringProperty prize;
-	private StringProperty bestPlayer;
+	private StringProperty referee;
 
 	public Championship(){
 		this(null, null, null);
@@ -18,21 +18,21 @@ public class Championship {
 	public Championship(String name){
         this.name = new SimpleStringProperty(name);
     }
-	public Championship(String name, String prize,String bestPlayer){
+	public Championship(String name, String prize,String referee){
         this.name = new SimpleStringProperty(name);
         this.prize = new SimpleStringProperty(prize);
-        this.bestPlayer = new SimpleStringProperty(bestPlayer);
+        this.referee = new SimpleStringProperty(referee);
 
   	}
 	public Championship(int id, String name){
 		this.id = new SimpleIntegerProperty(id);
         this.name = new SimpleStringProperty(name);
 	}
-	public Championship(int id, String name, String prize,String bestPlayer){
+	public Championship(int id, String name, String prize,String referee){
 		this.id = new SimpleIntegerProperty(id);
         this.name = new SimpleStringProperty(name);
         this.prize = new SimpleStringProperty(prize);
-        this.bestPlayer = new SimpleStringProperty(bestPlayer);
+        this.referee = new SimpleStringProperty(referee);
 
   	}
 	
@@ -46,8 +46,8 @@ public class Championship {
 	public StringProperty prizeProperty(){
 		return prize;
 	}
-	public StringProperty bestPlayerProperty(){
-		return bestPlayer;
+	public StringProperty refereeProperty(){
+		return referee;
 	}
 	
 	//Getters and Setters
@@ -71,12 +71,12 @@ public class Championship {
 		this.prize.set(prize);;
 	}
 
-	public String getBestPlayer() {
-		return bestPlayer.get();
+	public String getReferee() {
+		return referee.get();
 	}
 
-	public void setBestPlayer(String bestPlayer) {
-		this.bestPlayer.set(bestPlayer);
+	public void setReferee(String referee) {
+		this.referee.set(referee);
 	}	
 }
 
